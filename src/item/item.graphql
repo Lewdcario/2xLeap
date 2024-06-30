@@ -1,0 +1,36 @@
+type Item {
+	id: ID!
+	title: String!
+	description: String!
+	completed: Boolean!
+	deleted: Boolean!
+	priority: String!
+}
+
+input CreateItemInput {
+	title: String!
+	description: String!
+	completed: Boolean!
+	deleted: Boolean!
+	priority: String!
+}
+
+input UpdateItemInput {
+	title: String
+	description: String
+	completed: Boolean
+	deleted: Boolean
+	priority: String
+}
+
+type Query {
+	getItem(id: ID!): Item
+	getItems: [Item]
+}
+
+type Mutation {
+	createItem(input: CreateItemInput!): Item
+	updateItem(id: ID!, input: UpdateItemInput!): Item
+	deleteItem(id: ID!): Boolean
+	completeItem(id: ID!): Item
+}

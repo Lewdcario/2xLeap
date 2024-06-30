@@ -5,11 +5,12 @@ import { CreateItemDTO } from './create-item.dto';
 import { ITEM_REPOSITORY } from '../util/Constants';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
+import { UpdateItemDTO } from './update-item.dto';
 
 @Injectable()
 export class ItemService {
 	constructor(
-    	@Inject(ITEM_REPOSITORY) private itemRepository: Repository<Item>,
+		@Inject(ITEM_REPOSITORY) private itemRepository: Repository<Item>,
 		@Inject(CACHE_MANAGER) private cacheManager: Cache
 	) {}
 
@@ -59,5 +60,15 @@ export class ItemService {
 		await this.cacheManager.set(`item-${savedItem.id}`, savedItem, 300);
 		await this.cacheManager.del('items');
 		return savedItem;
+	}
+
+	async update(id: number, updateItemInput: UpdateItemDTO): Promise<Item | null> {
+		await this.itemRepository.update(id, updateItemInput);
+		const updatedItem = await this.itemRepository.findOne({ where: { id } });
+		if (updatedItem) {
+			await this.cacheManager.set(`item-${id}`, updatedItem, 300);
+			await this.cacheManager.del('items');
+		}
+		return updatedItem;
 	}
 }
