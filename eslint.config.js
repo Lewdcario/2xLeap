@@ -5,7 +5,7 @@ module.exports = {
 		tsconfigRootDir: __dirname,
 		sourceType: 'module'
 	},
-	plugins: ['@typescript-eslint/eslint-plugin'],
+	plugins: ['@typescript-eslint/eslint-plugin', '@stylistic/eslint-plugin-ts'],
 	extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
 	root: true,
 	env: {
@@ -46,6 +46,7 @@ module.exports = {
 		'no-prototype-builtins': 'off',
 		'linebreak-style': ['error', 'unix'],
 		'no-console': 'warn',
-		quotes: [2, 'single', { avoidEscape: true }]
+		quotes: [2, 'single', { avoidEscape: true }],
+		'@stylistic/js/linebreak-style': ['error', 'unix']
 	}
 };

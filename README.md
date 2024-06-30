@@ -42,23 +42,14 @@ yarn run test:cov
 -   DELETE /items/:id - Protected endpoint, requires a valid token to access, deletes an item by id
 -   Requests are protected through `Bearer-token` which is provided in the `.env` file
 
-## TODO
-
--   inserting items seems to be entirely based off of cache vibes, resets on restart
--   Seed file
-
 ## Notes
 
--   First time using NestJS so a lot of this is a learning experience, I like to learn new frameworks
--   Went over the boundary time of 2 hours
 -   Test coverage should be 100% - covered caching, invalid inputs, and the like. Just ignored app due to time constraints
 -   Basic rate limiter implemented
 -   Implemented super basic authentication due to lack of more time to spend. Also added a @Public() decorator to allow for public endpoints
 -   I did not create tests for throttling and authentication due to time constraints, but one can verify the authentication is working by visiting / (public) and /items (protected). The tests will demonstrate the routes work, or you can add @Public() to test it yourself.
 -   Sensitive information is in `.env`, but in a real project, much of this would remain a protected secret, naturally
 -   For caching, I would seriously consider redis, but I used in memory DB and caching for this project
--   With more time I would more consistently adopt ZOD for schema validation, but the project is a bit inconsistent right now due to time
--   Would setup husky and lint-staged and ci/cd pipeline for a real project
 -   With more time, would make sure swagger or similar is setup for automatically generated documentation
 -   With more time I would also make it a bit easier to test and make the seeder work in the main application outside of just seeing if the tests run
 -   e2e tests were also implemented, run `yarn test`, `yarn test:e2e` and `yarn test:cov` to see the results

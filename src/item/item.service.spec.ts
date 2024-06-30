@@ -30,7 +30,7 @@ describe('ItemService', () => {
 						create: jest.fn().mockImplementation((dto) => dto)
 					}
 				},
-				 {
+				{
 					provide: CACHE_MANAGER,
 					useValue: mockCacheManager
 				}
@@ -71,7 +71,7 @@ describe('ItemService', () => {
 	});
 
 	describe('findAll', () => {
-		 it('should return an array of items', async () => {
+		it('should return an array of items', async () => {
 			const result = [new Item(), new Item()];
 			jest.spyOn(itemRepository, 'find').mockResolvedValue(result);
 
@@ -82,7 +82,7 @@ describe('ItemService', () => {
 			// expect(await itemService.findAll()).toEqual(result);
 		});
 
-		 it('should fetch items from the repository and set them in cache if cache is empty', async () => {
+		it('should fetch items from the repository and set them in cache if cache is empty', async () => {
 			const result = [new Item(), new Item()];
 			jest.spyOn(mockCacheManager, 'get').mockResolvedValue(null);
 			jest.spyOn(itemRepository, 'find').mockResolvedValue(result);
@@ -94,7 +94,7 @@ describe('ItemService', () => {
 			expect(items).toEqual(result);
 		});
 
-		 it('should return items from cache', async () => {
+		it('should return items from cache', async () => {
 			const cachedItems = [new Item(), new Item()];
 			jest.spyOn(mockCacheManager, 'get').mockResolvedValue(cachedItems);
 

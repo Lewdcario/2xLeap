@@ -6,7 +6,6 @@ import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Inject, UseInterceptors, UsePipes } from '@nestjs/common';
 import { Cache } from 'cache-manager';
 import { ValidatePositiveIntPipe, ZodValidationPipe } from '../util/pipes/validation.pipe';
-import { Public } from '../util/Constants';
 import { GqlCacheInterceptor } from '../util/interceptors/gql-cache.interceptor';
 
 @Resolver('Item')
@@ -17,21 +16,18 @@ export class ItemResolver {
 	) {}
 
 	@Query(() => [Item])
-	@Public()
 	@UseInterceptors(GqlCacheInterceptor)
 	async getItems() {
 		return this.itemService.findAll();
 	}
 
 	@Query(() => Item, { nullable: true })
-	@Public()
 	@UseInterceptors(GqlCacheInterceptor)
 	async getItem(@Args('id', ValidatePositiveIntPipe) id: number) {
 		return this.itemService.find(id);
 	}
 
 	@Mutation(() => Item)
-	@Public()
 	@UsePipes(new ZodValidationPipe(CreateItemSchema))
 	async createItem(@Args('input') input: CreateItemSchemaType) {
 		const createItemDto = new CreateItemDTO(input.title, input.description, input.priority);
@@ -42,7 +38,6 @@ export class ItemResolver {
 	}
 
 	@Mutation(() => Item, { nullable: true })
-	@Public() // TODO: Remove these
 	async completeItem(@Args('id', ValidatePositiveIntPipe) id: number) {
 		const updatedItem = await this.itemService.complete(id);
 
@@ -55,7 +50,6 @@ export class ItemResolver {
 	}
 
 	@Mutation(() => Item, { nullable: true })
-	@Public()
 	async deleteItem(@Args('id', ValidatePositiveIntPipe) id: number) {
 		const deletedItem = await this.itemService.delete(id);
 

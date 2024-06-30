@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export class CreateItemDTO {
-  	title: string;
+	title: string;
 	description: string;
 	priority: string;
 	completed = false;

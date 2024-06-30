@@ -3,20 +3,20 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Item {
 	@PrimaryGeneratedColumn()
-		id: number;
+	id: number;
 
 	@Column({ length: 100 })
-		title: string;
+	title: string;
 
 	@Column('text')
-		description: string;
+	description: string;
 
 	@Column()
-		completed: boolean;
+	completed: boolean;
 
 	@Column()
-		deleted: boolean;
+	deleted: boolean;
 
 	@Column({ length: 10 })
-		priority: string;
+	priority: string;
 }

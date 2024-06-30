@@ -1,0 +1,10 @@
+*.css
+dist
+esm/*
+public/*
+tests/*
+scripts/*
+*.config.js
+node_modules
+coverage
+build
