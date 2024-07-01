@@ -65,6 +65,7 @@ This has been branched out & converted to fulfill those basic requirements throu
 -   There's an issue where after adding package files, the tests don't want to run anymore, switching to SWC didn't resolve this. I included pictures so in case that happens it is still demonstrated that the tests passed
 -   E2E tests are temporarily broken and I don't want to waste significantly more time fixing that right now, so just pretend it works, please.
 -   Some conflicts with Prettier and ESLint
+-   Add logger interceptor
 
 ## Demonstration of Tests working
 

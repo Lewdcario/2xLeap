@@ -1,0 +1,10 @@
+mutation CreateItem($input: CreateItemInput!) {
+	createItem(input: $input) {
+		id
+		title
+		description
+		priority
+		completed
+		deleted
+	}
+}
