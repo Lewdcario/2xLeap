@@ -70,3 +70,11 @@ This has been branched out & converted to fulfill those basic requirements throu
 ## Demonstration of Tests working
 
 The images of test results have been stored in /images so preview.
+
+## Setup
+
+1. Initialise with this command:
+
+```bash
+yarn prisma migrate dev --name 2xleap --schema ./src/database/schema.prisma
+```

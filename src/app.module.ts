@@ -4,26 +4,32 @@ import { Module } from '@nestjs/common';
 import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { CacheModule } from '@nestjs/cache-manager';
 import { ThrottlerModule } from '@nestjs/throttler';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
+// import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ItemModule } from './item/item.module';
-import { Item } from './item/item.entity';
+// import { Item } from './item/item.entity';
 import { AuthGuard } from './auth/auth.guard';
 import { GqlCacheInterceptor } from './util/interceptors/gql-cache.interceptor';
 import { GqlThrottlerGuard } from './util/guards/throttler.guard';
 
+import configuration from './config/env';
+
 @Module({
 	imports: [
+		ConfigModule.forRoot({ isGlobal: true, load: [configuration] }),
+		/*
 		TypeOrmModule.forRoot({
 			type: 'sqlite',
 			database: ':memory:',
 			synchronize: process.env.ENV === 'local',
 			entities: [Item]
 		}),
+		*/
 		ItemModule,
 		CacheModule.register(),
 		ThrottlerModule.forRoot([

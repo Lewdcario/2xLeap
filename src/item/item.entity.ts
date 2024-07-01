@@ -1,22 +1,58 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { ObjectType, Field, ID, InputType } from '@nestjs/graphql';
 
-@Entity()
+@ObjectType()
 export class Item {
-	@PrimaryGeneratedColumn()
+	@Field(() => ID)
 	id: number;
 
-	@Column({ length: 100 })
+	@Field()
 	title: string;
 
-	@Column('text')
+	@Field()
 	description: string;
 
-	@Column()
+	@Field()
 	completed: boolean;
 
-	@Column()
+	@Field()
 	deleted: boolean;
 
-	@Column({ length: 10 })
+	@Field()
 	priority: string;
+}
+
+@InputType()
+export class CreateItemInput {
+	@Field()
+	title: string;
+
+	@Field()
+	description: string;
+
+	@Field()
+	completed: boolean;
+
+	@Field()
+	deleted: boolean;
+
+	@Field()
+	priority: string;
+}
+
+@InputType()
+export class UpdateItemInput {
+	@Field({ nullable: true })
+	title?: string;
+
+	@Field({ nullable: true })
+	description?: string;
+
+	@Field({ nullable: true })
+	completed?: boolean;
+
+	@Field({ nullable: true })
+	deleted?: boolean;
+
+	@Field({ nullable: true })
+	priority?: string;
 }
