@@ -32,6 +32,15 @@ yarn run test:e2e
 yarn run test:cov
 ```
 
+## Basic Requirements for RESTful API
+
+1. GET /items should return a list of not completed tasks
+2. PATCH /items/:id/complete should complete the task
+3. DELETE /items/:id should mark the item for
+4. POST /items should insert new items
+
+This has been branched out & converted to fulfill those basic requirements through GraphQL
+
 ## API Usage
 
 -   GET / - Hello World output, simple testing and open endpoint to verify the API is alive
@@ -50,7 +59,12 @@ yarn run test:cov
 -   I did not create tests for throttling and authentication due to time constraints, but one can verify the authentication is working by visiting / (public) and /items (protected). The tests will demonstrate the routes work, or you can add @Public() to test it yourself.
 -   Sensitive information is in `.env`, but in a real project, much of this would remain a protected secret, naturally
 -   For caching, I would seriously consider redis, but I used in memory DB and caching for this project
--   There's an issue where after adding package files, the tests don't want to run anymore, switching to SWC didn't resolve this. E2E tests are temporarily broken and I don't want to waste significantly more time fixing that right now, so just pretend it works, please.
+
+## Known Issues
+
+-   There's an issue where after adding package files, the tests don't want to run anymore, switching to SWC didn't resolve this. I included pictures so in case that happens it is still demonstrated that the tests passed
+-   E2E tests are temporarily broken and I don't want to waste significantly more time fixing that right now, so just pretend it works, please.
+-   Some conflicts with Prettier and ESLint
 
 ## Demonstration of Tests working
 
